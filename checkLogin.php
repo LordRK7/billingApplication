@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 
 $a = $_REQUEST["txtEmail"];
 $b = $_REQUEST["txtPassword"];
@@ -15,6 +15,8 @@ else
     $row = mysqli_fetch_array($rsUser);
     if($row["user_pass"]=="$b")
     {
+        $_SESSION["uname"]=$row["user_name"];
+        $_SESSION["email"]=$row["user_email"];
         header("location:adminPanel.php");
     }
     else

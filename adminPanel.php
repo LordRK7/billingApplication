@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,12 +18,41 @@
         <h1 class="text-3xl font-bold text-center mb-6 text-gray-500">Admin Panel For Billing</h1>
 
         <!--PROJECT MANAGEMENT SECTION-->
-            <div class="m-12 p-6 bg-gray-500 rounded-lg shadow-sm">
-                <div>
-                    
+            <div class="ms-12 me-12 mb-1 p-4 bg-gray-500 rounded-lg shadow-sm" id="headDetails">
+                <div id="adminDetails">
+                    <?php
+                        if(isset($_SESSION["uname"]))
+                        {
+                            echo("<div>");
+                            echo("Welcome,");
+                            echo("<br>");
+                            echo("<br>");
+                            echo("<h2 margin-left:'30px'>");
+                                echo($_SESSION["uname"]);
+                            echo("<br>");
+                            echo($_SESSION["email"]);
+                            echo("</h2>");
+                            echo("</div>");
+                        }
+                    ?>
+                    <div id=btnGroup>
+                        <button type="button" name="createBill" class="btn outline p-1 me-2"><a href="http://127.0.0.1/myBillApp/billingApplication/adminPanel.php">Create Bill</a></button>
+                        <button type="button" name="billList" class="btn outline p-1 me-2">Bill List</button>
+                        <button type="submit" name="userLogout" class="btn bgdark outline p-1 me-2"><a href="logout.php">Logout</a></button>
+                    </div>
+                </div>
+                <div id="custDetails">
+                        <label for="cname">Custmer Name</label>
+                        <input type="text" name="cname" id="cname"><br><br>
+
+                        <label for="phone">Mobile No.</label>
+                        <input type="text" name="phone" id="phone"><br><br>
+
+                        <label for="custAddress">Billing Address</label>
+                        <textarea name="custAddress" id="custAddress" rows="2" cols="30"></textarea>
                 </div>
             </div>
-            <div class="m-12 p-6 bg-gray-500 rounded-lg shadow-sm">
+            <div class="ms-12 me-12 p-6 bg-gray-500 rounded-lg shadow-sm" id="prodDetails">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Product Management</h2>
                 <form method="get" action="index.html" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                     <div>
@@ -48,8 +79,10 @@
                                 <th>S. no</th>
                                 <th>Name</th>
                                 <th>Price</th>
+                                <th>Quantity</th>
                                 <th>Stock</th>
-                                <th>Actions</th>
+                                <th>Amount</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,6 +91,8 @@
                                 <td>Soap</td>
                                 <td>$115</td>
                                 <td>0</td>
+                                <td>2</td>
+                                <td>$5</td>
                                 <td>Edit</td>
                             </tr>
                         </tbody>
